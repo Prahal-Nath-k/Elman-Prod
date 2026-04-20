@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { ProductionStatus } from "@prisma/client";
+import { ProductionStatus } from "@/generated/prisma";
 import { getSafeStatusLabel } from "@/lib/production-status";
 
 const DEFAULT_CONFIG = {

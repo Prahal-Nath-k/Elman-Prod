@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Loader2, Plus, ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
-import type { Employee, ProductionJob, ManufacturingStage } from "@prisma/client";
+import type { Employee, ProductionJob, ManufacturingStage } from "@/generated/prisma";
 
 interface AddMaterialFormProps {
   job: ProductionJob;

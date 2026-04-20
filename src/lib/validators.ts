@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ManufacturingStage, InspectionStatus } from "@prisma/client";
+import { ManufacturingStage, InspectionStatus } from "@/generated/prisma";
 
 export const createJobSchema = z.object({
   reference: z

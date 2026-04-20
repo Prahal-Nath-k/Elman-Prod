@@ -34,7 +34,7 @@ import type {
   JobActivityLog,
   Employee,
   JobMaterial,
-} from "@prisma/client";
+} from "@/generated/prisma";
 
 export type ActionResult<T = void> =
   | { success: true; data: T }

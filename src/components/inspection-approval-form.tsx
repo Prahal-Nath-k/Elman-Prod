@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { ManufacturingStage, InspectionStatus, Employee } from "@prisma/client";
+import { ManufacturingStage, InspectionStatus, Employee } from "@/generated/prisma";
 import { getSafeManStageLabel } from "@/lib/production-status";
 import { submitInspection, approveStage } from "@/lib/actions";
 import { Button } from "@/components/ui/button";

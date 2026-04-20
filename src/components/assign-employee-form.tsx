@@ -22,7 +22,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { X } from "lucide-react";
-import type { Employee, ProductionJob } from "@prisma/client";
+import type { Employee, ProductionJob } from "@/generated/prisma";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 interface AssignEmployeeFormProps {
   job: ProductionJob;

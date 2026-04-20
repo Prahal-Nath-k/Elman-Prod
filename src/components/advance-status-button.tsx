@@ -7,7 +7,7 @@ import { getNextStatus, isFinalStatus, getSafeStatusLabel } from "@/lib/producti
 import { ChevronRight, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import type { ProductionJob, Employee } from "@prisma/client";
+import type { ProductionJob, Employee } from "@/generated/prisma";
 
 interface AdvanceStatusButtonProps {
   job: ProductionJob;

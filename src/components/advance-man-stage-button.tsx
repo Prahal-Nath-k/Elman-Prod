@@ -7,7 +7,7 @@ import { getNextManStage, getSafeManStageLabel } from "@/lib/production-status";
 import { ChevronRight, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import type { ProductionJob } from "@prisma/client";
+import type { ProductionJob } from "@/generated/prisma";
 import { toast } from "sonner";
 
 interface AdvanceManStageButtonProps {

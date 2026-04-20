@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductionJob, Employee } from "@prisma/client";
+import { ProductionJob, Employee } from "@/generated/prisma";
 import { DataTable } from "./data-table";
 import { getColumns } from "./columns";
 

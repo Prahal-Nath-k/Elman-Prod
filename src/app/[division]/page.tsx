@@ -4,7 +4,7 @@ import { CreateJobSheet } from "@/components/create-job-sheet";
 import { PipelineStats } from "@/components/pipeline-stats";
 import { Factory, Activity, Cpu, ChevronLeft } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Division } from "@prisma/client";
+import { Division } from "@/generated/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductionJob, ManufacturingStage, Employee } from "@prisma/client";
+import { ProductionJob, ManufacturingStage, Employee } from "@/generated/prisma";
 import {
   getManStageIndex,
   MANUFACTURING_STAGE_ORDER,

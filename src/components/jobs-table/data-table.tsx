@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { ProductionStatus } from "@prisma/client";
+import { ProductionStatus } from "@/generated/prisma";
 import { getSafeStatusLabel, PRODUCTION_STATUS_ORDER } from "@/lib/production-status";
 import { Search, Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";

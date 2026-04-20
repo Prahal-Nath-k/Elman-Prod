@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import { ProductionJob, Employee } from "@prisma/client";
+import { ProductionJob, Employee } from "@/generated/prisma";
 import { StatusBadge } from "@/components/status-badge";
 import { AdvanceStatusButton } from "@/components/advance-status-button";
 import { formatDistanceToNow } from "@/lib/format-date";

@@ -1,9 +1,9 @@
 "use client";
 
-import { ProductionStatus } from "@prisma/client";
+import { ProductionStatus } from "@/generated/prisma";
 import { PRODUCTION_STATUS_ORDER, getSafeStatusLabel } from "@/lib/production-status";
 import { StatusBadge } from "@/components/status-badge";
-import type { ProductionJob } from "@prisma/client";
+import type { ProductionJob } from "@/generated/prisma";
 
 interface PipelineStatsProps {
   jobs: ProductionJob[];

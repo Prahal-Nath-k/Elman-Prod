@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { JobMaterial, ManufacturingStage, Employee } from "@prisma/client";
+import { JobMaterial, ManufacturingStage, Employee } from "@/generated/prisma";
 import { updateMaterialStatus } from "@/lib/actions";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

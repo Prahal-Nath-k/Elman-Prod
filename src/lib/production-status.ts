@@ -1,4 +1,4 @@
-import { ProductionStatus, ManufacturingStage } from "@prisma/client";
+import { ProductionStatus, ManufacturingStage } from "@/generated/prisma";
 
 /**
  * Ordered list of production statuses representing the high-level pipeline.
