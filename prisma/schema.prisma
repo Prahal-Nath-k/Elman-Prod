@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Employee {
+  id             String           @id @default(uuid())
+  name           String
+  role           EmployeeRole     @default(STAFF)
+  createdAt      DateTime         @default(now())
+  approvals      ApprovalRecord[] @relation("approver")
+  inspections    InspectionLog[]  @relation("inspector")
+  supervisedLogs JobActivityLog[] @relation("assignedByEmployee")
+  assignedLogs   JobActivityLog[] @relation("assignedEmployee")
+}
+
+model ProductionJob {
+  id           String             @id @default(uuid())
+  reference    String             @unique
+  title        String
+  division     Division           @default(MECHANICAL)
+  status       ProductionStatus   @default(QUOTATION)
+  assignedTo   String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  currentStage ManufacturingStage @default(MATERIAL_CUTTING)
+  approvals    ApprovalRecord[]
+  inspections  InspectionLog[]
+  activityLogs JobActivityLog[]
+
+  // Division-specific fields (optional)
+  material     String?
+  finish       String?
+  dimensions   String?
+  voltage      String?
+  ampere       String?
+  ipRating     String?
+  panelType    String?
+  materials    JobMaterial[]
+
+  @@index([status])
+  @@index([currentStage])
+  @@index([createdAt])
+  @@index([division])
+}
+
+model JobMaterial {
+  id             String             @id @default(uuid())
+  jobId          String
+  name           String
+  quantity       Int                @default(1)
+  status         MaterialStatus     @default(AVAILABLE) 
+  stageRequired  ManufacturingStage
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  job            ProductionJob      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@index([stageRequired])
+}
+
+enum MaterialStatus {
+  PENDING
+  REQUESTED
+  AVAILABLE
+}
+
+enum Division {
+  MECHANICAL
+  ELECTRONIC
+}
+
+model JobActivityLog {
+  id                 String              @id @default(uuid())
+  jobId              String
+  stage              ProductionStatus
+  manufacturingStage ManufacturingStage?
+  employeeId         String
+  assignedById       String
+  workDate           DateTime
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  description        String?
+  assignedBy         Employee            @relation("assignedByEmployee", fields: [assignedById], references: [id])
+  employee           Employee            @relation("assignedEmployee", fields: [employeeId], references: [id])
+  job                ProductionJob       @relation(fields: [jobId], references: [id])
+
+  @@index([jobId])
+  @@index([employeeId])
+  @@index([workDate])
+}
+
+model InspectionLog {
+  id          String             @id @default(uuid())
+  jobId       String
+  stage       ManufacturingStage
+  status      InspectionStatus   @default(PENDING)
+  notes       String?
+  inspectorId String
+  createdAt   DateTime           @default(now())
+  inspector   Employee           @relation("inspector", fields: [inspectorId], references: [id])
+  job         ProductionJob      @relation(fields: [jobId], references: [id])
+
+  @@index([jobId, stage])
+}
+
+model ApprovalRecord {
+  id           String             @id @default(uuid())
+  jobId        String
+  stage        ManufacturingStage
+  approvedById String
+  approvedAt   DateTime           @default(now())
+  approvedBy   Employee           @relation("approver", fields: [approvedById], references: [id])
+  job          ProductionJob      @relation(fields: [jobId], references: [id])
+
+  @@index([jobId, stage])
+}
+
+enum ProductionStatus {
+  QUOTATION
+  PURCHASE_ORDER
+  DESIGN
+  PURCHASE_MATERIAL
+  APPROVAL
+  VENDOR_DELIVERY
+  MANUFACTURING
+  COMPLETED
+  SHIPPED
+}
+
+enum ManufacturingStage {
+  MATERIAL_CUTTING
+  BENDING
+  WELDING
+  MACHINING
+  GRINDING_CLEANING
+  ASSEMBLY
+  PAINTING_COATING
+  QUALITY_TESTING
+  PACKING
+  DISPATCH
+}
+
+enum InspectionStatus {
+  PENDING
+  PASSED
+  FAILED
+}
+
+enum EmployeeRole {
+  ADMIN
+  PURCHASE_HEAD
+  STORE
+  MECH_HEAD
+  ELEC_HEAD
+  OWNER
+  SUPERVISOR
+  STAFF
+}
