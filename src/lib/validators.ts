@@ -14,7 +14,7 @@ export const createJobSchema = z.object({
     .string()
     .min(1, "Title is required")
     .max(200, "Title must be 200 characters or fewer"),
-  division: z.enum(["MECHANICAL", "ELECTRONIC"]).default("MECHANICAL"),
+  division: z.enum(["MECHANICAL", "ELECTRONIC"]),
   assignedTo: z
     .string()
     .max(100, "Assigned To must be 100 characters or fewer")
